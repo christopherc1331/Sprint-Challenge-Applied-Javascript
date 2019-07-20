@@ -18,6 +18,10 @@
   </div>
 */
 
+let imgArr = [];
+let leftBtn = document.querySelector(".left-button");
+let rightBtn = document.querySelector(".right-button");
+
 function addCarouseltoDOM() {
   let parentDiv = document.querySelector(".carousel-container");
 
@@ -27,27 +31,32 @@ function addCarouseltoDOM() {
   let leftBtn = document.createElement("div");
   leftBtn.classList.add("left-button");
   leftBtn.addEventListener("click", event => {
-    picCarousel();
+    picCarousel(event);
   });
 
   let img1 = document.createElement("img");
   img1.src = "./assets/carousel/mountains.jpeg";
+  img1.style.display = "block";
+  imgArr.push(img1);
 
   let img2 = document.createElement("img");
   img2.src = "./assets/carousel/computer.jpeg";
+  imgArr.push(img2);
 
   let img3 = document.createElement("img");
   img3.src = "./assets/carousel/trees.jpeg";
+  imgArr.push(img3);
 
   let img4 = document.createElement("img");
   img4.src = "./assets/carousel/turntable.jpeg";
+  imgArr.push(img4);
 
   let rightBtn = document.createElement("div");
   rightBtn.classList.add("right-button");
   rightBtn.addEventListener("click", event => {
-    picCarousel();
+    picCarousel(event);
   });
-
+  console.log(imgArr);
   //add elements to DOM
 
   parentDiv.appendChild(carouselDiv);
@@ -59,28 +68,35 @@ function addCarouseltoDOM() {
   carouselDiv.appendChild(rightBtn);
 
   //carousel function
-  let currentIndex = 0;
-  let imgArr = [img1, img2, img3, img4];
-  function picCarousel() {
-    document.querySelectorAll("");
-    if (true) {
-      if (event.target === leftBtn) {
-        if (currentIndex === 0) {
-          currentIndex = imgArr[-1];
-          imgArr[currentIndex].display = "block";
-        } else {
-          currentIndex--;
-          imgArr[currentIndex].display = "block";
-        }
-      } else {
-        if (currentindex === imgArr.length - 1) {
-          currentIndex = 0;
-        } else {
-          currentindex++;
-        }
-      }
-    }
-  }
 }
 
 addCarouseltoDOM();
+
+let currentIndex = 0;
+
+function picCarousel(event) {
+  document.querySelectorAll(".carousel img").forEach(item => {
+    item.style.display = "none";
+  });
+  imgArr.forEach(item => {
+    item.display = "none";
+  });
+  if (event.target === leftBtn) {
+    if (currentIndex === 0) {
+      currentIndex = 3;
+      console.log(imgArr[currentIndex]);
+      imgArr[currentIndex].style.display = "block";
+    } else {
+      currentIndex--;
+      imgArr[currentIndex].style.display = "block";
+    }
+  } else {
+    if (currentIndex === 3) {
+      currentIndex = 0;
+      imgArr[currentIndex].style.display = "block";
+    } else {
+      currentIndex++;
+      imgArr[currentIndex].style.display = "block";
+    }
+  }
+}

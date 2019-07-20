@@ -57,9 +57,7 @@ function createCard(obj) {
 axios
   .get("https://lambda-times-backend.herokuapp.com/articles")
   .then(response => {
-    console.log(response.data.articles);
     Object.keys(response.data.articles).forEach(function(key) {
-      console.log(key, response.data.articles[key]);
       response.data.articles[key].forEach(item => {
         createCard(item);
       });

@@ -11,7 +11,6 @@
 axios
   .get("https://lambda-times-backend.herokuapp.com/topics")
   .then(response => {
-    console.log(response.data.topics);
     response.data.topics.forEach(item => {
       Tab(item);
     });
@@ -34,5 +33,4 @@ function Tab(item) {
   //add tab to DOM
 
   parentDiv.appendChild(tabDiv);
-  console.log(item);
 }
